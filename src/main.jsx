@@ -7,6 +7,7 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 import { Home } from "./components";
 
@@ -18,5 +19,9 @@ const router = createBrowserRouter(
     )
 );
 
-createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
+createRoot(document.getElementById("root")).render(
+    <AuthProvider>
+        <RouterProvider router={router} />
+    </AuthProvider>
+);
 
