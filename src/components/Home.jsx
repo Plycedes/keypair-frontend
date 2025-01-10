@@ -1,11 +1,11 @@
 import React from "react";
 
-import { SignIn } from "../components";
+import { SignIn, SignUp } from "../components";
 
 function Home() {
     return (
         <div>
-            <SignIn />
+            <SignUp />
         </div>
     );
 }
