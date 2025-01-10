@@ -30,7 +30,7 @@ const AuthProvider = ({ children }) => {
                 setToken(data.accessToken);
                 LocalStorage.set("user", data.user);
                 LocalStorage.set("token", data.accessToken);
-                navigate("/keypairs");
+                navigate("/home");
                 console.log(data);
             },
             alert
