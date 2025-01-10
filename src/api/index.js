@@ -21,3 +21,15 @@ apiClient.interceptors.request.use(
 export const loginUser = (data) => {
     return apiClient.post("/users/login", data);
 };
+
+export const registerUser = (data) => {
+    return apiClient.post("/users/register", data);
+};
+
+export const logoutUser = () => {
+    return apiClient.post("/users/logout");
+};
+
+export const changeUserPassword = (data) => {
+    return apiClient.post("/users/change-password", data);
+};

@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage, requestHandler } from "../utils";
-import { loginUser } from "../api";
+import { loginUser, registerUser, logoutUser } from "../api";
 import { Loader } from "../components";
 
 const AuthContext = createContext({
@@ -37,6 +37,32 @@ const AuthProvider = ({ children }) => {
         );
     };
 
+    const register = async (data) => {
+        await requestHandler(
+            async () => await registerUser(data),
+            setIsLoading,
+            () => {
+                alert("Account created successfully!");
+                navigate("/signin");
+            },
+            alert
+        );
+    };
+
+    const logout = async () => {
+        await requestHandler(
+            async () => await logoutUser(),
+            setIsLoading,
+            () => {
+                setUser(null);
+                setToken(null);
+                LocalStorage.clear();
+                navigate("/signin");
+            },
+            alert
+        );
+    };
+
     useEffect(() => {
         setIsLoading(true);
         const _token = LocalStorage.get("token");
@@ -49,7 +75,7 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     return (
-        <AuthContext.Provider value={{ user, token, login }}>
+        <AuthContext.Provider value={{ user, token, login, register, logout }}>
             {isLoading ? <Loader /> : children}
         </AuthContext.Provider>
     );
