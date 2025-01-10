@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { LocalStorage, requestHandler } from "../utils";
 import { loginUser } from "../api";
@@ -36,6 +36,17 @@ const AuthProvider = ({ children }) => {
             alert
         );
     };
+
+    useEffect(() => {
+        setIsLoading(true);
+        const _token = LocalStorage.get("token");
+        const _user = LocalStorage.get("user");
+        if (_token && _user?._id) {
+            setUser(_user);
+            setToken(_token);
+        }
+        setIsLoading(false);
+    }, []);
 
     return (
         <AuthContext.Provider value={{ user, token, login }}>

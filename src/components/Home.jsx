@@ -10,15 +10,11 @@ function Home() {
     const { login } = useAuth();
 
     useEffect(() => {
-        (async () => {
-            await login({ username: "zoro", password: "sword" });
-        })();
+        // (async () => {
+        //     await login({ username: "zoro", password: "sword" });
+        // })();
     }, []);
-    return (
-        <div>
-            <SignIn />
-        </div>
-    );
+    return <div>Home</div>;
 }
 
 export default Home;

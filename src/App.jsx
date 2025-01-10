@@ -1,14 +1,20 @@
-import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext.jsx";
+import { Routes, Route, Navigate } from "react-router-dom";
+import { SignIn, SignUp, Home } from "./components";
+import { useAuth } from "./context/AuthContext";
 
 function App() {
+    const { token, user } = useAuth();
     return (
-        <>
-            <AuthProvider>
-                <Outlet />
-            </AuthProvider>
-        </>
+        <Routes>
+            <Route
+                path="/"
+                element={token && user?._id ? <Navigate to="home" /> : <Navigate to="signin" />}
+            />
+            <Route path="/home" element={<Home />} />
+            <Route path="/signin" element={<SignIn />} />
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="*" element={<p>404 Not found</p>} />
+        </Routes>
     );
 }
 
