@@ -31,6 +31,7 @@ const AuthProvider = ({ children }) => {
                 LocalStorage.set("user", data.user);
                 LocalStorage.set("token", data.accessToken);
                 navigate("/keypairs");
+                console.log(data);
             },
             alert
         );

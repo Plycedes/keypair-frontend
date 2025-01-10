@@ -7,21 +7,17 @@ import {
     RouterProvider,
     Route,
 } from "react-router-dom";
-import { AuthProvider } from "./context/AuthContext.jsx";
 
-import { Home } from "./components";
+import { Home, SignIn, SignUp, KeyPairs } from "./components";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path="/" element={<App />}>
-            <Route path="" element={<Home />}></Route>
+            <Route path="" element={<Home />} />
+            <Route path="keypairs" element={<KeyPairs />} />
         </Route>
     )
 );
 
-createRoot(document.getElementById("root")).render(
-    <AuthProvider>
-        <RouterProvider router={router} />
-    </AuthProvider>
-);
+createRoot(document.getElementById("root")).render(<RouterProvider router={router} />);
 

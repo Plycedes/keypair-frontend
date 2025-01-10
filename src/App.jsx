@@ -1,10 +1,13 @@
 import { useState } from "react";
 import { Outlet } from "react-router-dom";
+import { AuthProvider } from "./context/AuthContext.jsx";
 
 function App() {
     return (
         <>
-            <Outlet />
+            <AuthProvider>
+                <Outlet />
+            </AuthProvider>
         </>
     );
 }
