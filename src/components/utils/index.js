@@ -23,3 +23,22 @@ export class LocalStorage {
         localStorage.clear();
     }
 }
+
+export const requestHandler = async (api, setLoading, onSuccess, onError) => {
+    setLoading && setLoading(true);
+    try {
+        const response = await api();
+        const { data } = response.data;
+        if (response.data.success) {
+            onSuccess(data);
+        }
+    } catch (error) {
+        if ([401, 403].includes(error?.response.data?.statusCode)) {
+            localStorage.clear();
+            window.location.href = "/login";
+        }
+        onError(error?.response?.data?.message || "Something went wrong");
+    } finally {
+        setLoading && setLoading(false);
+    }
+};
