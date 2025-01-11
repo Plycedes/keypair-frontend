@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Controls, Loader } from "../components";
+import { Controls, Loader, Category } from "../components";
 import { LocalStorage, requestHandler } from "../utils";
 import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -8,6 +8,8 @@ import { useAuth } from "../context/AuthContext";
 function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [categories, setCategories] = useState("");
+    const [focusedBtnID, setFocusedBtnId] = useState("");
+
     const { logout } = useAuth();
 
     const fetchAllCategories = async () => {
@@ -22,6 +24,10 @@ function Home() {
         );
     };
 
+    const handleFocus = (id) => {
+        setFocusedBtnId(id);
+    };
+
     useEffect(() => {
         (async () => {
             await fetchAllCategories();
@@ -32,6 +38,7 @@ function Home() {
 
     return (
         <div className="flex h-screen">
+            {isLoading && <Loader />}
             {/* Left Section */}
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
@@ -42,8 +49,14 @@ function Home() {
                 <div className="h-[86%] ">
                     {categories ? (
                         <div>
-                            {categories.map((category, index) => (
-                                <div key={index}>Category</div>
+                            {categories.map((category) => (
+                                <div key={category._id} className="">
+                                    <Category
+                                        category={category}
+                                        onClick={handleFocus}
+                                        focused={focusedBtnID == category._id}
+                                    />
+                                </div>
                             ))}
                         </div>
                     ) : (
