@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { SignIn, SignUp } from "../components";
+import { Controls } from "../components";
 import { LocalStorage, requestHandler } from "../utils";
 import { loginUser } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -14,57 +14,11 @@ function Home() {
             {/* Left Section (1/6) */}
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
-                <div className="h-[5%] flex items-center px-3">
-                    <img
-                        className="w-5 h-5 mr-2"
-                        src="https://res-console.cloudinary.com/dxsffcg6l/thumbnails/v1/image/upload/v1736502550/aW1hZ2VfMjAyNS0wMS0xMF8xNTE2NTQ5NTQtcmVtb3ZlYmctcHJldmlld194YmV4dW4=/drilldown"
-                        alt="logo"
-                    />
-                    <div className="flex gap-2 pl-10">
-                        <a
-                            href="#"
-                            className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50"
-                        >
-                            <img
-                                className="w-5 h-5 mr-2"
-                                src="https://img.icons8.com/?size=100&id=11550&format=png&color=FFFFFF"
-                                alt="logo"
-                            />
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50"
-                        >
-                            <img
-                                className="w-5 h-5 mr-2"
-                                src="https://img.icons8.com/?size=100&id=16745&format=png&color=FFFFFF"
-                                alt="logo"
-                            />
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50"
-                        >
-                            <img
-                                className="w-5 h-5 mr-2"
-                                src="https://img.icons8.com/?size=100&id=54313&format=png&color=FFFFFF"
-                                alt="logo"
-                            />
-                        </a>
-                        <a
-                            href="#"
-                            className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50"
-                        >
-                            <img
-                                className="w-5 h-5 mr-2"
-                                src="https://img.icons8.com/?size=100&id=37924&format=png&color=FFFFFF"
-                                alt="logo"
-                            />
-                        </a>
-                    </div>
+                <div className="h-[6%] flex items-center px-3">
+                    <Controls />
                 </div>
                 {/* Middle largest div */}
-                <div className="h-[87%] "></div>
+                <div className="h-[86%] "></div>
                 {/* Bottom narrow div */}
                 <div className="h-[8%] py-3 px-2">
                     <div>
