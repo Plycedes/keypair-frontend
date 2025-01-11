@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Controls, Loader, Category, CreateCategory } from "../components";
+import { Controls, ExtraControls, Loader, Category, CreateCategory } from "../components";
 import { LocalStorage, requestHandler } from "../utils";
 import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -9,11 +9,14 @@ function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [categories, setCategories] = useState("");
     const [focusedBtnID, setFocusedBtnId] = useState("");
+
+    const [openExtraControls, setOpenExtraControls] = useState(false);
     const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
 
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
 
     const fetchAllCategories = async () => {
+        if (!user) return;
         await requestHandler(
             async () => await getAllCategories(),
             setIsLoading,
@@ -33,13 +36,23 @@ function Home() {
         setOpenCreateCategoryForm((prev) => !prev);
     };
 
+    const handleOpenExtraControls = () => {
+        setOpenExtraControls((prev) => !prev);
+    };
+
+    const handleLogout = async () => {
+        if (user._id) {
+            await logout();
+        }
+    };
+
     useEffect(() => {
         (async () => {
             await fetchAllCategories();
         })();
     }, []);
 
-    useEffect(() => {}, [categories]);
+    //useEffect(() => {}, [categories]);
 
     return (
         <div className="flex h-screen">
@@ -51,6 +64,8 @@ function Home() {
                     <Controls
                         refreshCategories={fetchAllCategories}
                         openCategoryForm={handleOpenCreateCategoryForm}
+                        openExtraControlsMenu={handleOpenExtraControls}
+                        openExtraControls={openExtraControls}
                     />
                 </div>
                 {/* Middle largest div */}
@@ -58,6 +73,7 @@ function Home() {
                     className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
                     onClick={(e) => {
                         if (e.target.placeholder != "title") setOpenCreateCategoryForm(false);
+                        setOpenExtraControls(false);
                     }}
                 >
                     {openCreateCategoryForm && (
@@ -92,7 +108,7 @@ function Home() {
                             rounded-lg text-sm px-5 py-2.5 
                             text-center dark:bg-primary-150 
                             dark:hover:bg-primary-250 dark:focus:ring-primary-450"
-                            onClick={async () => await logout()}
+                            onClick={handleLogout}
                         >
                             Logout
                         </button>
@@ -101,7 +117,14 @@ function Home() {
             </div>
 
             {/* Right Section */}
-            <div className="w-[85%] flex flex-col" onClick={() => setOpenCreateCategoryForm(false)}>
+            <div
+                className="w-[85%] flex flex-col relative"
+                onClick={(e) => {
+                    if (e.target.id != "extra") setOpenExtraControls(false);
+                    setOpenCreateCategoryForm(false);
+                }}
+            >
+                {openExtraControls && <ExtraControls isOpen={openExtraControls} />}
                 {/* Top narrow div */}
                 <div className="h-[5%] bg-gray-700 flex justify-center items-center p-2">
                     <div className="w-1/3 flex items-center justify-center bg-gray-700 border border-gray-400 rounded-full px-2 py-1">

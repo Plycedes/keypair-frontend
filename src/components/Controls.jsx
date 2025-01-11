@@ -1,9 +1,9 @@
 import React from "react";
 
-function Controls({ refreshCategories, openCategoryForm }) {
+function Controls({ refreshCategories, openCategoryForm, openExtraControlsMenu }) {
     return (
-        <div>
-            <div className="flex gap-1 justify-center">
+        <div className="relative">
+            <div className="flex gap-1 justify-center ">
                 <img
                     className="w-6 h-6 mr-4"
                     src="https://res-console.cloudinary.com/dxsffcg6l/thumbnails/v1/image/upload/v1736502550/aW1hZ2VfMjAyNS0wMS0xMF8xNTE2NTQ5NTQtcmVtb3ZlYmctcHJldmlld194YmV4dW4=/drilldown"
@@ -40,8 +40,8 @@ function Controls({ refreshCategories, openCategoryForm }) {
                     />
                 </a>
                 <a
-                    href="#"
                     className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50 hover:bg-gray-700 p-1 rounded"
+                    onClick={openExtraControlsMenu}
                 >
                     <img
                         className="w-5 h-5"
