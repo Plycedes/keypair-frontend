@@ -1,6 +1,6 @@
 import React from "react";
 
-function ExtraControls({ isOpen }) {
+function ExtraControls({ isOpen, setDeleteUI }) {
     return (
         <div id="extra">
             {isOpen && (
@@ -14,6 +14,7 @@ function ExtraControls({ isOpen }) {
                             <button
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
+                                onClick={() => setDeleteUI(true)}
                             >
                                 Delete Folder
                             </button>

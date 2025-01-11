@@ -1,6 +1,12 @@
 import React, { useEffect, useState } from "react";
-
-import { Controls, ExtraControls, Loader, Category, CreateCategory } from "../components";
+import {
+    Controls,
+    ExtraControls,
+    Loader,
+    Category,
+    CreateCategory,
+    DeleteCategory,
+} from "../components";
 import { LocalStorage, requestHandler } from "../utils";
 import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -10,6 +16,7 @@ function Home() {
     const [categories, setCategories] = useState("");
     const [focusedBtnID, setFocusedBtnId] = useState("");
 
+    const [deleteUI, setDeleteUI] = useState(false);
     const [openExtraControls, setOpenExtraControls] = useState(false);
     const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
 
@@ -57,6 +64,13 @@ function Home() {
     return (
         <div className="flex h-screen">
             {isLoading && <Loader />}
+            {deleteUI && (
+                <DeleteCategory
+                    onClose={setDeleteUI}
+                    catId={focusedBtnID}
+                    refreshCategories={fetchAllCategories}
+                />
+            )}
             {/* Left Section */}
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
@@ -124,7 +138,9 @@ function Home() {
                     setOpenCreateCategoryForm(false);
                 }}
             >
-                {openExtraControls && <ExtraControls isOpen={openExtraControls} />}
+                {openExtraControls && (
+                    <ExtraControls isOpen={openExtraControls} setDeleteUI={setDeleteUI} />
+                )}
                 {/* Top narrow div */}
                 <div className="h-[5%] bg-gray-700 flex justify-center items-center p-2">
                     <div className="w-1/3 flex items-center justify-center bg-gray-700 border border-gray-400 rounded-full px-2 py-1">

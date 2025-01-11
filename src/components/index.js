@@ -6,5 +6,16 @@ import Controls from "./Controls";
 import Category from "./Category";
 import ExtraControls from "./ExtraControls";
 import CreateCategory from "./CreateCategory";
+import DeleteCategory from "./DeleteCategory";
 
-export { Home, SignIn, SignUp, Loader, Controls, Category, ExtraControls, CreateCategory };
+export {
+    Home,
+    SignIn,
+    SignUp,
+    Loader,
+    Controls,
+    Category,
+    ExtraControls,
+    CreateCategory,
+    DeleteCategory,
+};
