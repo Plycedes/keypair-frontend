@@ -47,3 +47,7 @@ export const createCategory = (title) => {
 export const deleteCategory = (data) => {
     return apiClient.post("/categories/delete-category", data);
 };
+
+export const editCategory = (data) => {
+    return apiClient.post("/categories/edit-category", data);
+};

@@ -5,6 +5,7 @@ import Loader from "./Loader";
 import Controls from "./Controls";
 import Category from "./Category";
 import ExtraControls from "./ExtraControls";
+import EditCategory from "./EditCategory";
 import CreateCategory from "./CreateCategory";
 import DeleteCategory from "./DeleteCategory";
 
@@ -16,6 +17,7 @@ export {
     Controls,
     Category,
     ExtraControls,
+    EditCategory,
     CreateCategory,
     DeleteCategory,
 };

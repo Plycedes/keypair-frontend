@@ -6,8 +6,9 @@ import {
     Category,
     CreateCategory,
     DeleteCategory,
+    EditCategory,
 } from "../components";
-import { LocalStorage, requestHandler } from "../utils";
+import { requestHandler } from "../utils";
 import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
 
@@ -16,6 +17,7 @@ function Home() {
     const [categories, setCategories] = useState("");
     const [focusedBtnID, setFocusedBtnId] = useState("");
 
+    const [editMode, setEditMode] = useState(false);
     const [deleteUI, setDeleteUI] = useState(false);
     const [openExtraControls, setOpenExtraControls] = useState(false);
     const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
@@ -59,7 +61,7 @@ function Home() {
         })();
     }, []);
 
-    useEffect(() => {}, [categories]);
+    useEffect(() => {}, [categories, editMode]);
 
     return (
         <div className="flex h-screen">
@@ -86,7 +88,10 @@ function Home() {
                 <div
                     className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
                     onClick={(e) => {
-                        if (e.target.placeholder != "title") setOpenCreateCategoryForm(false);
+                        if (e.target.placeholder != "title") {
+                            setOpenCreateCategoryForm(false);
+                            setEditMode(false);
+                        }
                         setOpenExtraControls(false);
                     }}
                 >
@@ -100,8 +105,12 @@ function Home() {
                                     <div key={category._id} className="">
                                         <Category
                                             category={category}
-                                            onClick={handleFocus}
+                                            handleFocus={handleFocus}
                                             focused={focusedBtnID == category._id}
+                                            focusedBtnID={focusedBtnID}
+                                            editMode={editMode}
+                                            setEditMode={setEditMode}
+                                            refreshCategories={fetchAllCategories}
                                         />
                                     </div>
                                 ))}
@@ -134,12 +143,20 @@ function Home() {
             <div
                 className="w-[85%] flex flex-col relative"
                 onClick={(e) => {
-                    if (e.target.id != "extra") setOpenExtraControls(false);
+                    if (e.target.id != "extra") {
+                        setOpenExtraControls(false);
+                        setEditMode(false);
+                    }
                     setOpenCreateCategoryForm(false);
                 }}
             >
                 {openExtraControls && (
-                    <ExtraControls isOpen={openExtraControls} setDeleteUI={setDeleteUI} />
+                    <ExtraControls
+                        isOpen={openExtraControls}
+                        setIsOpen={setOpenExtraControls}
+                        setDeleteUI={setDeleteUI}
+                        setEditMode={setEditMode}
+                    />
                 )}
                 {/* Top narrow div */}
                 <div className="h-[5%] bg-gray-700 flex justify-center items-center p-2">

@@ -1,6 +1,6 @@
 import React from "react";
 
-function ExtraControls({ isOpen, setDeleteUI }) {
+function ExtraControls({ isOpen, setIsOpen, setDeleteUI, setEditMode }) {
     return (
         <div id="extra">
             {isOpen && (
@@ -14,7 +14,10 @@ function ExtraControls({ isOpen, setDeleteUI }) {
                             <button
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
-                                onClick={() => setDeleteUI(true)}
+                                onClick={() => {
+                                    setDeleteUI(true);
+                                    setIsOpen(false);
+                                }}
                             >
                                 Delete Folder
                             </button>
@@ -23,6 +26,7 @@ function ExtraControls({ isOpen, setDeleteUI }) {
                             <button
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
+                                onClick={() => setEditMode(true)}
                             >
                                 Rename Folder
                             </button>
