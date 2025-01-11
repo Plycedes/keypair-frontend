@@ -10,6 +10,7 @@ const apiClient = axios.create({
 apiClient.interceptors.request.use(
     function (config) {
         const token = LocalStorage.get("token");
+        console.log(token);
         config.headers.Authorization = `Bearer ${token}`;
         return config;
     },
@@ -38,4 +39,8 @@ export const changeUserPassword = (data) => {
 
 export const getAllCategories = () => {
     return apiClient.get("categories/get-all-categories");
+};
+
+export const createCategory = (title) => {
+    return apiClient.post("/categories/create-category", title);
 };

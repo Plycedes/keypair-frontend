@@ -60,7 +60,9 @@ function Home() {
                         if (e.target.placeholder != "title") setOpenCreateCategoryForm(false);
                     }}
                 >
-                    {openCreateCategoryForm && <CreateCategory />}
+                    {openCreateCategoryForm && (
+                        <CreateCategory refreshCategories={fetchAllCategories} />
+                    )}
                     <div>
                         {categories ? (
                             <div>
