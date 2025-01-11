@@ -1,6 +1,6 @@
 import React from "react";
 
-function Controls() {
+function Controls({ refreshCategories }) {
     return (
         <div>
             <div className="flex gap-1 justify-center">
@@ -16,7 +16,7 @@ function Controls() {
                     <img
                         className="w-5 h-5"
                         src="https://img.icons8.com/?size=100&id=11550&format=png&color=FFFFFF"
-                        alt="logo"
+                        alt="create-keypair"
                     />
                 </a>
                 <a
@@ -26,17 +26,17 @@ function Controls() {
                     <img
                         className="w-5 h-5"
                         src="https://img.icons8.com/?size=100&id=16745&format=png&color=FFFFFF"
-                        alt="logo"
+                        alt="create-folder"
                     />
                 </a>
                 <a
-                    href="#"
                     className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50 hover:bg-gray-700 p-1 rounded"
+                    onClick={refreshCategories}
                 >
                     <img
                         className="w-5 h-5"
                         src="https://img.icons8.com/?size=100&id=54313&format=png&color=FFFFFF"
-                        alt="logo"
+                        alt="reload"
                     />
                 </a>
                 <a
@@ -46,7 +46,7 @@ function Controls() {
                     <img
                         className="w-5 h-5"
                         src="https://img.icons8.com/?size=100&id=37924&format=png&color=FFFFFF"
-                        alt="logo"
+                        alt="more"
                     />
                 </a>
             </div>

@@ -43,10 +43,10 @@ function Home() {
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
                 <div className="h-[6%] flex items-center px-3">
-                    <Controls />
+                    <Controls refreshCategories={fetchAllCategories} />
                 </div>
                 {/* Middle largest div */}
-                <div className="h-[86%] ">
+                <div className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                     {categories ? (
                         <div>
                             {categories.map((category) => (
