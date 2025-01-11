@@ -33,3 +33,9 @@ export const logoutUser = () => {
 export const changeUserPassword = (data) => {
     return apiClient.post("/users/change-password", data);
 };
+
+// Category routes
+
+export const getAllCategories = () => {
+    return apiClient.get("categories/get-all-categories");
+};

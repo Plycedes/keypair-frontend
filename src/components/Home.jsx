@@ -1,24 +1,55 @@
 import React, { useEffect, useState } from "react";
 
-import { Controls } from "../components";
+import { Controls, Loader } from "../components";
 import { LocalStorage, requestHandler } from "../utils";
-import { loginUser } from "../api";
+import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
 
 function Home() {
     const [isLoading, setIsLoading] = useState(false);
+    const [categories, setCategories] = useState("");
     const { logout } = useAuth();
+
+    const fetchAllCategories = async () => {
+        await requestHandler(
+            async () => await getAllCategories(),
+            setIsLoading,
+            (data) => {
+                setCategories(data);
+                console.log(data);
+            },
+            alert
+        );
+    };
+
+    useEffect(() => {
+        (async () => {
+            await fetchAllCategories();
+        })();
+    }, []);
+
+    useEffect(() => {}, [categories]);
 
     return (
         <div className="flex h-screen">
-            {/* Left Section (1/6) */}
+            {/* Left Section */}
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
                 <div className="h-[6%] flex items-center px-3">
                     <Controls />
                 </div>
                 {/* Middle largest div */}
-                <div className="h-[86%] "></div>
+                <div className="h-[86%] ">
+                    {categories ? (
+                        <div>
+                            {categories.map((category, index) => (
+                                <div key={index}>Category</div>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="text-gray-200">Create your first folder</div>
+                    )}
+                </div>
                 {/* Bottom narrow div */}
                 <div className="h-[8%] py-3 px-2">
                     <div>
@@ -38,12 +69,11 @@ function Home() {
                 </div>
             </div>
 
-            {/* Right Section (5/6) */}
+            {/* Right Section */}
             <div className="w-[85%] flex flex-col">
                 {/* Top narrow div */}
                 <div className="h-[5%] bg-gray-700 flex justify-center items-center p-2">
                     <div className="w-1/3 flex items-center justify-center bg-gray-700 border border-gray-400 rounded-full px-2 py-1">
-                        {/* Search Icon */}
                         <svg
                             xmlns="http://www.w3.org/2000/svg"
                             className="h-3 w-3 text-gray-400"
@@ -58,7 +88,7 @@ function Home() {
                                 d="M11 19a8 8 0 100-16 8 8 0 000 16zm6-6l4 4"
                             />
                         </svg>
-                        {/* Input Field */}
+
                         <input
                             type="text"
                             placeholder="Search keypairs"
