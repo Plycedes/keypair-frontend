@@ -52,7 +52,7 @@ function Home() {
         })();
     }, []);
 
-    //useEffect(() => {}, [categories]);
+    useEffect(() => {}, [categories]);
 
     return (
         <div className="flex h-screen">

@@ -15,7 +15,7 @@ function ExtraControls({ isOpen }) {
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
                             >
-                                Option 1
+                                Delete Folder
                             </button>
                         </li>
                         <li>
@@ -23,7 +23,7 @@ function ExtraControls({ isOpen }) {
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
                             >
-                                Option 2
+                                Rename Folder
                             </button>
                         </li>
                         <li>
@@ -31,7 +31,7 @@ function ExtraControls({ isOpen }) {
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
                             >
-                                Option 3
+                                Change Password
                             </button>
                         </li>
                     </ul>
