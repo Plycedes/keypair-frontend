@@ -1,6 +1,13 @@
 import React from "react";
 
-function ExtraControls({ isOpen, setIsOpen, setDeleteUI, setEditMode }) {
+function ExtraControls({
+    focused,
+    isOpen,
+    setIsOpen,
+    setDeleteUI,
+    setEditMode,
+    setChangePasswordUI,
+}) {
     return (
         <div id="extra">
             {isOpen && (
@@ -15,7 +22,7 @@ function ExtraControls({ isOpen, setIsOpen, setDeleteUI, setEditMode }) {
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
                                 onClick={() => {
-                                    setDeleteUI(true);
+                                    if (focused) setDeleteUI(true);
                                     setIsOpen(false);
                                 }}
                             >
@@ -26,7 +33,10 @@ function ExtraControls({ isOpen, setIsOpen, setDeleteUI, setEditMode }) {
                             <button
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
-                                onClick={() => setEditMode(true)}
+                                onClick={() => {
+                                    if (focused) setEditMode(true);
+                                    setIsOpen(false);
+                                }}
                             >
                                 Rename Folder
                             </button>
@@ -35,6 +45,10 @@ function ExtraControls({ isOpen, setIsOpen, setDeleteUI, setEditMode }) {
                             <button
                                 className="block w-full px-4 py-2 text-left hover:bg-gray-100 dark:hover:bg-gray-700"
                                 id="extra"
+                                onClick={() => {
+                                    setChangePasswordUI(true);
+                                    setIsOpen(false);
+                                }}
                             >
                                 Change Password
                             </button>

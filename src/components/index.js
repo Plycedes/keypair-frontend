@@ -8,6 +8,7 @@ import ExtraControls from "./ExtraControls";
 import EditCategory from "./EditCategory";
 import CreateCategory from "./CreateCategory";
 import DeleteCategory from "./DeleteCategory";
+import ChangePassword from "./ChangePassword";
 
 export {
     Home,
@@ -20,4 +21,5 @@ export {
     EditCategory,
     CreateCategory,
     DeleteCategory,
+    ChangePassword,
 };

@@ -6,7 +6,7 @@ import {
     Category,
     CreateCategory,
     DeleteCategory,
-    EditCategory,
+    ChangePassword,
 } from "../components";
 import { requestHandler } from "../utils";
 import { getAllCategories } from "../api";
@@ -19,6 +19,7 @@ function Home() {
 
     const [editMode, setEditMode] = useState(false);
     const [deleteUI, setDeleteUI] = useState(false);
+    const [changePasswordUI, setChangePasswordUI] = useState(false);
     const [openExtraControls, setOpenExtraControls] = useState(false);
     const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
 
@@ -73,6 +74,7 @@ function Home() {
                     refreshCategories={fetchAllCategories}
                 />
             )}
+            {changePasswordUI && <ChangePassword onBack={setChangePasswordUI} />}
             {/* Left Section */}
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
@@ -152,10 +154,12 @@ function Home() {
             >
                 {openExtraControls && (
                     <ExtraControls
+                        focused={focusedBtnID != ""}
                         isOpen={openExtraControls}
                         setIsOpen={setOpenExtraControls}
                         setDeleteUI={setDeleteUI}
                         setEditMode={setEditMode}
+                        setChangePasswordUI={setChangePasswordUI}
                     />
                 )}
                 {/* Top narrow div */}
