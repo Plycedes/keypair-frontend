@@ -1,6 +1,6 @@
 import React from "react";
 
-function Controls({ refreshCategories }) {
+function Controls({ refreshCategories, openCategoryForm }) {
     return (
         <div>
             <div className="flex gap-1 justify-center">
@@ -20,8 +20,8 @@ function Controls({ refreshCategories }) {
                     />
                 </a>
                 <a
-                    href="#"
                     className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50 hover:bg-gray-700 p-1 rounded"
+                    onClick={openCategoryForm}
                 >
                     <img
                         className="w-5 h-5"

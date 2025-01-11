@@ -4,5 +4,6 @@ import SignUp from "./SignUp";
 import Loader from "./Loader";
 import Controls from "./Controls";
 import Category from "./Category";
+import CreateCategory from "./CreateCategory";
 
-export { Home, SignIn, SignUp, Loader, Controls, Category };
+export { Home, SignIn, SignUp, Loader, Controls, Category, CreateCategory };

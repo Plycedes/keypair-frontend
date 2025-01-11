@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-import { Controls, Loader, Category } from "../components";
+import { Controls, Loader, Category, CreateCategory } from "../components";
 import { LocalStorage, requestHandler } from "../utils";
 import { getAllCategories } from "../api";
 import { useAuth } from "../context/AuthContext";
@@ -9,6 +9,7 @@ function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [categories, setCategories] = useState("");
     const [focusedBtnID, setFocusedBtnId] = useState("");
+    const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
 
     const { logout } = useAuth();
 
@@ -28,6 +29,10 @@ function Home() {
         setFocusedBtnId(id);
     };
 
+    const handleOpenCreateCategoryForm = () => {
+        setOpenCreateCategoryForm((prev) => !prev);
+    };
+
     useEffect(() => {
         (async () => {
             await fetchAllCategories();
@@ -43,25 +48,36 @@ function Home() {
             <div className="w-[15%] flex flex-col bg-gray-800">
                 {/* Top narrow div */}
                 <div className="h-[6%] flex items-center px-3">
-                    <Controls refreshCategories={fetchAllCategories} />
+                    <Controls
+                        refreshCategories={fetchAllCategories}
+                        openCategoryForm={handleOpenCreateCategoryForm}
+                    />
                 </div>
                 {/* Middle largest div */}
-                <div className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                    {categories ? (
-                        <div>
-                            {categories.map((category) => (
-                                <div key={category._id} className="">
-                                    <Category
-                                        category={category}
-                                        onClick={handleFocus}
-                                        focused={focusedBtnID == category._id}
-                                    />
-                                </div>
-                            ))}
-                        </div>
-                    ) : (
-                        <div className="text-gray-200">Create your first folder</div>
-                    )}
+                <div
+                    className="h-[86%] overflow-y-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent"
+                    onClick={(e) => {
+                        if (e.target.placeholder != "title") setOpenCreateCategoryForm(false);
+                    }}
+                >
+                    {openCreateCategoryForm && <CreateCategory />}
+                    <div>
+                        {categories ? (
+                            <div>
+                                {categories.map((category) => (
+                                    <div key={category._id} className="">
+                                        <Category
+                                            category={category}
+                                            onClick={handleFocus}
+                                            focused={focusedBtnID == category._id}
+                                        />
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <div className="text-gray-200">Create your first folder</div>
+                        )}
+                    </div>
                 </div>
                 {/* Bottom narrow div */}
                 <div className="h-[8%] py-3 px-2">
@@ -83,7 +99,7 @@ function Home() {
             </div>
 
             {/* Right Section */}
-            <div className="w-[85%] flex flex-col">
+            <div className="w-[85%] flex flex-col" onClick={() => setOpenCreateCategoryForm(false)}>
                 {/* Top narrow div */}
                 <div className="h-[5%] bg-gray-700 flex justify-center items-center p-2">
                     <div className="w-1/3 flex items-center justify-center bg-gray-700 border border-gray-400 rounded-full px-2 py-1">
