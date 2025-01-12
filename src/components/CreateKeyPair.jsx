@@ -24,7 +24,9 @@ function CreateKeyPair({ onBack, focusedBtnId }) {
         await requestHandler(
             async () => await createKeyPair(data),
             setIsLoading,
-            () => Toast.success("KeyPair Created Successfully"),
+            () => {
+                Toast.success("KeyPair Created Successfully");
+            },
             Toast.failure
         );
         onBack(false);

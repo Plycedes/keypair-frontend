@@ -12,6 +12,7 @@ import CreateCategory from "./CreateCategory";
 import DeleteCategory from "./DeleteCategory";
 import ChangePassword from "./ChangePassword";
 import EditKeyPair from "./EditKeyPair";
+import DeleteKeyPair from "./DeleteKeyPair";
 import CreateKeyPair from "./CreateKeyPair";
 
 export {
@@ -29,5 +30,6 @@ export {
     DeleteCategory,
     ChangePassword,
     EditKeyPair,
+    DeleteKeyPair,
     CreateKeyPair,
 };

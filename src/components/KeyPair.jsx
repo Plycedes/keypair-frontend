@@ -1,10 +1,11 @@
 import React, { useState } from "react";
-import { EditKeyPair } from "../components";
+import { EditKeyPair, DeleteKeyPair } from "../components";
 
 function KeyValuePair({ keypair }) {
     const [isDescriptionVisible, setDescriptionVisible] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
     const [editKeyPairUI, setEditKeyPairUI] = useState(false);
+    const [deleteKeyPairUI, setDeleteKeyPairUI] = useState(false);
 
     const handleCopy = () => {
         navigator.clipboard.writeText("Hello");
@@ -22,6 +23,7 @@ function KeyValuePair({ keypair }) {
         <div className="w-full mx-auto">
             {/* Card */}
             {editKeyPairUI && <EditKeyPair onBack={setEditKeyPairUI} keyPair={keypair} />}
+            {deleteKeyPairUI && <DeleteKeyPair onClose={setDeleteKeyPairUI} keyPair={keypair} />}
             <div
                 className="p-4 border border-gray-500 rounded-lg shadow-sm bg-gray-800 hover:shadow-md transition cursor-pointer"
                 onClick={toggleDescription}
@@ -50,7 +52,7 @@ function KeyValuePair({ keypair }) {
                                 className="w-5 h-5 cursor-pointer"
                                 onClick={(e) => {
                                     e.stopPropagation();
-                                    onDelete();
+                                    setDeleteKeyPairUI(true);
                                 }}
                             />
                         </div>

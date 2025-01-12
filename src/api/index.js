@@ -65,3 +65,7 @@ export const createKeyPair = (data) => {
 export const editKeyPair = (data) => {
     return apiClient.post("keypair/edit-keypair", data);
 };
+
+export const deleteKeyPair = (data) => {
+    return apiClient.post("keypair/delete-keypair", data);
+};

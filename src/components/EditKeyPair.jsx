@@ -22,11 +22,12 @@ function EditKeyPair({ onBack, keyPair }) {
 
     const handleCreateKeyPair = async () => {
         if (!keyPair) return;
-        //console.log(data);
         await requestHandler(
             async () => await editKeyPair(data),
             setIsLoading,
-            (data) => Toast.success("KeyPair Created Successfully"),
+            () => {
+                Toast.success("KeyPair Edited Successfully");
+            },
             Toast.failure
         );
         onBack(false);
