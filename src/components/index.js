@@ -4,6 +4,7 @@ import SignUp from "./SignUp";
 import Loader from "./Loader";
 import Controls from "./Controls";
 import Category from "./Category";
+import KeyValuePair from "./KeyPair";
 import ExtraControls from "./ExtraControls";
 import EditCategory from "./EditCategory";
 import CreateCategory from "./CreateCategory";
@@ -17,6 +18,7 @@ export {
     Loader,
     Controls,
     Category,
+    KeyValuePair,
     ExtraControls,
     EditCategory,
     CreateCategory,

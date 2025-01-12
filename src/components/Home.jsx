@@ -4,6 +4,7 @@ import {
     ExtraControls,
     Loader,
     Category,
+    KeyValuePair,
     CreateCategory,
     DeleteCategory,
     ChangePassword,
@@ -188,7 +189,9 @@ function Home() {
                     </div>
                 </div>
                 {/* Bottom largest div */}
-                <div className="h-[95%] bg-gray-900"></div>
+                <div className="h-[95%] bg-gray-900">
+                    <KeyValuePair />
+                </div>
             </div>
         </div>
     );

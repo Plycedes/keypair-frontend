@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { changeUserPassword } from "../api";
 import { requestHandler, Toast } from "../utils";
+import { Loader } from "../components";
 
-function ChangePassword({ onChangePassword, onBack }) {
+function ChangePassword({ onBack }) {
     const [data, setData] = useState({
         oldPassword: "",
         newPassword: "",
@@ -31,6 +32,7 @@ function ChangePassword({ onChangePassword, onBack }) {
             className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 z-50"
             onClick={(e) => e.stopPropagation()} // Prevent closing when clicking inside the box
         >
+            {isLoading && <Loader />}
             <div className="bg-white dark:bg-gray-800 w-96 p-6 rounded-lg shadow-lg">
                 <h2 className="text-lg font-bold mb-4 text-gray-700 dark:text-gray-300">
                     Change Password
