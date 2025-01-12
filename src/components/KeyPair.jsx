@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { EditKeyPair } from "../components";
 
 function KeyValuePair({ keypair }) {
     const [isDescriptionVisible, setDescriptionVisible] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
+    const [editKeyPairUI, setEditKeyPairUI] = useState(false);
 
     const handleCopy = () => {
         navigator.clipboard.writeText("Hello");
@@ -19,6 +21,7 @@ function KeyValuePair({ keypair }) {
     return (
         <div className="w-full mx-auto">
             {/* Card */}
+            {editKeyPairUI && <EditKeyPair onBack={setEditKeyPairUI} keyPair={keypair} />}
             <div
                 className="p-4 border border-gray-500 rounded-lg shadow-sm bg-gray-800 hover:shadow-md transition cursor-pointer"
                 onClick={toggleDescription}
@@ -28,25 +31,29 @@ function KeyValuePair({ keypair }) {
                     <h3 className="font-medium text-gray-100">{keypair.title}</h3>
                     <div className="flex gap-4">
                         {/* Edit Button */}
-                        <img
-                            src="https://img.icons8.com/?size=100&id=47749&format=png&color=FFFFFF"
-                            alt="Edit"
-                            className="w-5 h-5 cursor-pointer"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onEdit();
-                            }}
-                        />
+                        <div className="p-1 hover:bg-gray-700 rounded">
+                            <img
+                                src="https://img.icons8.com/?size=100&id=47749&format=png&color=FFFFFF"
+                                alt="Edit"
+                                className="w-5 h-5 cursor-pointer"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    setEditKeyPairUI(true);
+                                }}
+                            />
+                        </div>
                         {/* Delete Button */}
-                        <img
-                            src="https://img.icons8.com/?size=100&id=nerFBdXcYDve&format=png&color=FFFFFF"
-                            alt="Delete"
-                            className="w-5 h-5 cursor-pointer"
-                            onClick={(e) => {
-                                e.stopPropagation();
-                                onDelete();
-                            }}
-                        />
+                        <div className="p-1 hover:bg-gray-700 rounded">
+                            <img
+                                src="https://img.icons8.com/?size=100&id=nerFBdXcYDve&format=png&color=FFFFFF"
+                                alt="Delete"
+                                className="w-5 h-5 cursor-pointer"
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    onDelete();
+                                }}
+                            />
+                        </div>
                     </div>
                 </div>
 

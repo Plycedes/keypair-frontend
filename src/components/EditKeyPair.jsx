@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import { createKeyPair } from "../api";
+import { editKeyPair } from "../api";
 import { requestHandler, Toast } from "../utils";
 import { Loader } from "../components";
 
-function CreateKeyPair({ onBack, focusedBtnId }) {
+function EditKeyPair({ onBack, keyPair }) {
     const [data, setData] = useState({
-        title: "",
-        value: "",
-        description: "",
-        catId: focusedBtnId,
+        title: keyPair.title,
+        value: keyPair.value,
+        description: keyPair.description,
+        catId: keyPair.category,
+        keyPairId: keyPair._id,
     });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,11 +21,12 @@ function CreateKeyPair({ onBack, focusedBtnId }) {
     };
 
     const handleCreateKeyPair = async () => {
-        if (!focusedBtnId) return;
+        if (!keyPair) return;
+        //console.log(data);
         await requestHandler(
-            async () => await createKeyPair(data),
+            async () => await editKeyPair(data),
             setIsLoading,
-            () => Toast.success("KeyPair Created Successfully"),
+            (data) => Toast.success("KeyPair Created Successfully"),
             Toast.failure
         );
         onBack(false);
@@ -95,7 +97,7 @@ function CreateKeyPair({ onBack, focusedBtnId }) {
                         className="px-4 py-2 bg-primary-150 text-white rounded-lg hover:bg-primary-250 focus:outline-none focus:ring-2 focus:ring-primary-450"
                         onClick={handleCreateKeyPair}
                     >
-                        Change Password
+                        Confirm Edit
                     </button>
                     <button
                         className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-400"
@@ -109,4 +111,4 @@ function CreateKeyPair({ onBack, focusedBtnId }) {
     );
 }
 
-export default CreateKeyPair;
+export default EditKeyPair;
