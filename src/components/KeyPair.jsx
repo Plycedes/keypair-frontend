@@ -25,7 +25,7 @@ function KeyValuePair({ keypair }) {
             >
                 {/* Title & Action Buttons */}
                 <div className="flex w-full justify-between items-center">
-                    <h3 className="font-medium text-gray-100">Title</h3>
+                    <h3 className="font-medium text-gray-100">{keypair.title}</h3>
                     <div className="flex gap-4">
                         {/* Edit Button */}
                         <img
@@ -57,7 +57,7 @@ function KeyValuePair({ keypair }) {
                     relative flex w-full h-10 items-center pr-3  border rounded bg-black text-primary-50 text-sm font-mono"
                     >
                         <span className="w-full h-full flex items-center pl-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
-                            npm run dev
+                            {keypair.value}
                         </span>
                         <div className="absoulte ml-2 z-10">
                             {isCopied ? (
@@ -81,7 +81,7 @@ function KeyValuePair({ keypair }) {
             {/* Description (Revealed on Click) */}
             {isDescriptionVisible && (
                 <div className="p-4 rounded-lg mt-1 border-gray-200 bg-gray-700">
-                    <p className="text-sm text-gray-300">Description</p>
+                    <p className="text-sm text-gray-300">{keypair.description}</p>
                 </div>
             )}
         </div>

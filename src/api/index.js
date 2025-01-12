@@ -51,3 +51,9 @@ export const deleteCategory = (data) => {
 export const editCategory = (data) => {
     return apiClient.post("/categories/edit-category", data);
 };
+
+// KeyPair routes
+
+export const getAllKeyPairs = (data) => {
+    return apiClient.post("keypair/get-all-keypairs", data);
+};

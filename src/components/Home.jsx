@@ -4,19 +4,20 @@ import {
     ExtraControls,
     Loader,
     Category,
-    KeyValuePair,
+    KeysList,
     CreateCategory,
     DeleteCategory,
     ChangePassword,
 } from "../components";
 import { requestHandler } from "../utils";
-import { getAllCategories } from "../api";
+import { getAllCategories, getAllKeyPairs } from "../api";
 import { useAuth } from "../context/AuthContext";
 
 function Home() {
     const [isLoading, setIsLoading] = useState(false);
     const [categories, setCategories] = useState("");
     const [focusedBtnID, setFocusedBtnId] = useState("");
+    const [keyPairs, setKeyPairs] = useState("");
 
     const [editMode, setEditMode] = useState(false);
     const [deleteUI, setDeleteUI] = useState(false);
@@ -39,8 +40,23 @@ function Home() {
         );
     };
 
-    const handleFocus = (id) => {
+    const fetchAllKeyPairs = async (catId) => {
+        console.log("FocusId", catId);
+        if (!catId) return;
+        await requestHandler(
+            async () => await getAllKeyPairs({ catId }),
+            setIsLoading,
+            (data) => {
+                setKeyPairs(data);
+                console.log(data);
+            },
+            alert
+        );
+    };
+
+    const handleFocus = async (id) => {
         setFocusedBtnId(id);
+        await fetchAllKeyPairs(id);
     };
 
     const handleOpenCreateCategoryForm = () => {
@@ -189,8 +205,10 @@ function Home() {
                     </div>
                 </div>
                 {/* Bottom largest div */}
-                <div className="h-[95%] bg-gray-900">
-                    <KeyValuePair />
+                <div className="h-[95%] bg-gray-900 pb-5">
+                    <div className="h-full">
+                        <KeysList keyPairs={keyPairs} />
+                    </div>
                 </div>
             </div>
         </div>
