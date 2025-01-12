@@ -31,7 +31,7 @@ function SignIn() {
                 >
                     <img
                         className="w-8 h-8 mr-2"
-                        src="https://res-console.cloudinary.com/dxsffcg6l/thumbnails/v1/image/upload/v1736502550/aW1hZ2VfMjAyNS0wMS0xMF8xNTE2NTQ5NTQtcmVtb3ZlYmctcHJldmlld194YmV4dW4=/drilldown"
+                        src="https://res.cloudinary.com/dxsffcg6l/image/upload/fl_preserve_transparency/v1736502550/image_2025-01-10_151654954-removebg-preview_xbexun.jpg?_s=public-apps"
                         alt="logo"
                     />
                     KeyPair
