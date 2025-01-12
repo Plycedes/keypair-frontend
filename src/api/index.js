@@ -57,3 +57,7 @@ export const editCategory = (data) => {
 export const getAllKeyPairs = (data) => {
     return apiClient.post("keypair/get-all-keypairs", data);
 };
+
+export const createKeyPair = (data) => {
+    return apiClient.post("keypair/create-keypair", data);
+};

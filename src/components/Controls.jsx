@@ -1,6 +1,11 @@
 import React from "react";
 
-function Controls({ refreshCategories, openCategoryForm, openExtraControlsMenu }) {
+function Controls({
+    refreshCategories,
+    openCategoryForm,
+    openExtraControlsMenu,
+    openCreateKeyPair,
+}) {
     return (
         <div className="relative">
             <div className="flex gap-1 justify-center ">
@@ -10,8 +15,8 @@ function Controls({ refreshCategories, openCategoryForm, openExtraControlsMenu }
                     alt="logo"
                 />
                 <a
-                    href="#"
                     className="flex items-center text-lg font-bold text-gray-900 dark:text-primary-50 hover:bg-gray-700 p-1 rounded"
+                    onClick={() => openCreateKeyPair(true)}
                 >
                     <img
                         className="w-5 h-5"

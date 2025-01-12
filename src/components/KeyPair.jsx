@@ -20,7 +20,7 @@ function KeyValuePair({ keypair }) {
         <div className="w-full mx-auto">
             {/* Card */}
             <div
-                className="p-4 border rounded-lg shadow-sm bg-gray-800 hover:shadow-md transition cursor-pointer"
+                className="p-4 border border-gray-500 rounded-lg shadow-sm bg-gray-800 hover:shadow-md transition cursor-pointer"
                 onClick={toggleDescription}
             >
                 {/* Title & Action Buttons */}
@@ -54,7 +54,7 @@ function KeyValuePair({ keypair }) {
                 <div className="relative flex mt-2 w-full flex items-center">
                     <div
                         className="
-                    relative flex w-full h-10 items-center pr-3  border rounded bg-black text-primary-50 text-sm font-mono"
+                    relative flex w-full h-10 items-center pr-3  border border-gray-500 rounded bg-black text-primary-50 text-sm font-mono"
                     >
                         <span className="w-full h-full flex items-center pl-3 overflow-x-scroll scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-transparent">
                             {keypair.value}

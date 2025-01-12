@@ -5,6 +5,7 @@ import {
     Loader,
     Category,
     KeysList,
+    CreateKeyPair,
     CreateCategory,
     DeleteCategory,
     ChangePassword,
@@ -21,6 +22,7 @@ function Home() {
 
     const [editMode, setEditMode] = useState(false);
     const [deleteUI, setDeleteUI] = useState(false);
+    const [createKeyPairUI, setCreateKeyPairUI] = useState(false);
     const [changePasswordUI, setChangePasswordUI] = useState(false);
     const [openExtraControls, setOpenExtraControls] = useState(false);
     const [openCreateCategoryForm, setOpenCreateCategoryForm] = useState(false);
@@ -91,6 +93,9 @@ function Home() {
                     refreshCategories={fetchAllCategories}
                 />
             )}
+            {createKeyPairUI && (
+                <CreateKeyPair onBack={setCreateKeyPairUI} focusedBtnId={focusedBtnID} />
+            )}
             {changePasswordUI && <ChangePassword onBack={setChangePasswordUI} />}
             {/* Left Section */}
             <div className="w-[15%] flex flex-col bg-gray-800">
@@ -101,6 +106,7 @@ function Home() {
                         openCategoryForm={handleOpenCreateCategoryForm}
                         openExtraControlsMenu={handleOpenExtraControls}
                         openExtraControls={openExtraControls}
+                        openCreateKeyPair={setCreateKeyPairUI}
                     />
                 </div>
                 {/* Middle largest div */}

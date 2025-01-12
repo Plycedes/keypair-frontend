@@ -11,6 +11,7 @@ import EditCategory from "./EditCategory";
 import CreateCategory from "./CreateCategory";
 import DeleteCategory from "./DeleteCategory";
 import ChangePassword from "./ChangePassword";
+import CreateKeyPair from "./CerateKeyPair";
 
 export {
     Home,
@@ -26,4 +27,5 @@ export {
     CreateCategory,
     DeleteCategory,
     ChangePassword,
+    CreateKeyPair,
 };
