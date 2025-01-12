@@ -36,7 +36,6 @@ function Home() {
             setIsLoading,
             (data) => {
                 setCategories(data);
-                console.log(data);
             },
             alert
         );
