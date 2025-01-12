@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+import { changeUserPassword } from "../api";
+import { requestHandler, Toast } from "../utils";
 
 function ChangePassword({ onChangePassword, onBack }) {
     const [data, setData] = useState({
         oldPassword: "",
         newPassword: "",
     });
+    const [isLoading, setIsLoading] = useState(false);
 
     const handleDataChange = (name) => (e) => {
         setData({
@@ -13,14 +16,14 @@ function ChangePassword({ onChangePassword, onBack }) {
         });
     };
 
-    const handleChangePassword = () => {
-        if (!oldPassword || !newPassword) {
-            alert("Please fill in both fields.");
-            return;
-        }
-
-        // Callback to handle the password change logic
-        onChangePassword(oldPassword, newPassword);
+    const handleChangePassword = async () => {
+        await requestHandler(
+            async () => await changeUserPassword(data),
+            setIsLoading,
+            () => Toast.success("Password Changed Successfully"),
+            Toast.failure
+        );
+        onBack(false);
     };
 
     return (
@@ -40,11 +43,12 @@ function ChangePassword({ onChangePassword, onBack }) {
                         Old Password
                     </label>
                     <input
-                        id="old-password"
+                        name="oldPassword"
                         type="password"
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 dark:text-gray-100 dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                         value={data.oldPassword}
-                        onChange={(e) => handleDataChange("oldPassword")}
+                        onChange={handleDataChange("oldPassword")}
+                        required={true}
                     />
                 </div>
                 <div className="mb-6">
@@ -55,11 +59,12 @@ function ChangePassword({ onChangePassword, onBack }) {
                         New Password
                     </label>
                     <input
-                        id="new-password"
+                        name="newPassword"
                         type="password"
                         className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-gray-900 dark:text-gray-100 dark:bg-gray-700 focus:ring-primary-500 focus:border-primary-500 sm:text-sm"
                         value={data.newPassword}
-                        onChange={(e) => handleDataChange("newPassword")}
+                        onChange={handleDataChange("newPassword")}
+                        required={true}
                     />
                 </div>
                 <div className="flex justify-end gap-3">
