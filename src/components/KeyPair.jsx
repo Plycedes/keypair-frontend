@@ -8,7 +8,7 @@ function KeyValuePair({ keypair }) {
     const [deleteKeyPairUI, setDeleteKeyPairUI] = useState(false);
 
     const handleCopy = () => {
-        navigator.clipboard.writeText("Hello");
+        navigator.clipboard.writeText(keypair.value);
         setIsCopied(true);
         setTimeout(() => {
             setIsCopied(false);
