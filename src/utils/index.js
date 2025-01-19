@@ -36,11 +36,11 @@ export const requestHandler = async (api, setLoading, onSuccess, onError) => {
             onSuccess(data);
         }
     } catch (error) {
-        if ([401, 403].includes(error?.response.data?.statusCode)) {
+        if ([401, 403].includes(error?.response?.status)) {
             localStorage.clear();
             window.location.href = "/login";
         }
-        console.log(error.response);
+        console.log(error.response.status);
         onError(error?.response?.data?.message || "Something went wrong");
     } finally {
         setLoading && setLoading(false);
