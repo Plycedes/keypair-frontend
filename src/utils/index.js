@@ -40,6 +40,7 @@ export const requestHandler = async (api, setLoading, onSuccess, onError) => {
             localStorage.clear();
             window.location.href = "/login";
         }
+        console.log(error);
         onError(error?.response?.data?.message || "Something went wrong");
     } finally {
         setLoading && setLoading(false);
